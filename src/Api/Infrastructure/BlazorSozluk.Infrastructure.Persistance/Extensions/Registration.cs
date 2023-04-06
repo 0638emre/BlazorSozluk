@@ -19,6 +19,9 @@ namespace BlazorSozluk.Infrastructure.Persistance.Extensions
                 });
             });
 
+            var seedData = new SeedData();
+            seedData.SeedAsync(configuration).GetAwaiter().GetResult();//seed dataların yüklenmesi ve sonuçlanmasını bekliyoruz.
+            
             return services;
         }
     }
