@@ -1,12 +1,12 @@
 ﻿using BlazorSozluk.Application.Interfaces.Repositories;
 using BlazorSozluk.Domain.Models;
-using Microsoft.EntityFrameworkCore;
+using BlazorSozluk.Infrastructure.Persistance.Context;
 
 namespace BlazorSozluk.Infrastructure.Persistance.Repositories
 {
     public class EntryCommentRepository : GenericRepository<EntryComment>, IEntryCommentRepository
     {
-        protected EntryCommentRepository(DbContext dbContext) : base(dbContext)
+        public EntryCommentRepository(BlazorSozlukContext dbContext) : base(dbContext)
         {
         }
     }

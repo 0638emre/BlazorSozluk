@@ -9,8 +9,8 @@ namespace BlazorSozluk.Common.Infrastructure
         {
             using var md5 = MD5.Create();
 
-            byte[] intputBytes = Encoding.ASCII.GetBytes(password);
-            byte[] hashBytes = md5.ComputeHash(intputBytes);
+            byte[] inputBytes = Encoding.ASCII.GetBytes(password);
+            byte[] hashBytes = md5.ComputeHash(inputBytes);
 
             return Convert.ToHexString(hashBytes);
         }

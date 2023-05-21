@@ -1,12 +1,12 @@
 ﻿using BlazorSozluk.Application.Interfaces.Repositories;
 using BlazorSozluk.Domain.Models;
-using Microsoft.EntityFrameworkCore;
+using BlazorSozluk.Infrastructure.Persistance.Context;
 
 namespace BlazorSozluk.Infrastructure.Persistance.Repositories
 {
-    public class EmailConfirmationRepository : GenericRepository<EmailConfirmation> , IEmailConfirmationRepository
+    public class EmailConfirmationRepository : GenericRepository<EmailConfirmation>, IEmailConfirmationRepository
     {
-        protected EmailConfirmationRepository(DbContext dbContext) : base(dbContext)
+        public EmailConfirmationRepository(BlazorSozlukContext dbContext) : base(dbContext)
         {
         }
     }
