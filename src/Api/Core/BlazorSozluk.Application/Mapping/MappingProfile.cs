@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BlazorSozluk.Application.Features.Commands.EntryCommand.Create;
 using BlazorSozluk.Common.Models.Queries;
 using BlazorSozluk.Common.Models.RequestModels;
 using BlazorSozluk.Domain.Models;
@@ -13,9 +14,9 @@ namespace BlazorSozluk.Application.Mapping
             CreateMap<CreateUserCommand, User>();
             CreateMap<UpdateUserCommand, User>();
             //CreateMap<UserDetailViewModel, User>().ReverseMap();
-            //CreateMap<CreateEntryCommand, Entry>().ReverseMap();
+            CreateMap<CreateEntryCommand, Entry>().ReverseMap();
             //CreateMap<Entry, GetEntriesViewModel>().ForMember(x => x.CommentCount, y => y.MapFrom(z => z.EntryComments.Count));
-            //CreateMap<CreateEntryCommentCommand, EntryComment>().ReverseMap();
+            CreateMap<CreateEntryCommentCommand, EntryComment>().ReverseMap();
         }
     }
 }

@@ -47,7 +47,7 @@ namespace BlazorSozluk.Application.Features.Commands.User.Update
                     NewEmailAddress = request.EmailAddress
                 };
 
-                QueueFactory.SendMessage(exchangeName: SozlukConstans.UserExchangeName, exchangeType: SozlukConstans.DefaultExchangeType,
+                QueueFactory.SendMessageToExchange(exchangeName: SozlukConstans.UserExchangeName, exchangeType: SozlukConstans.DefaultExchangeType,
                     queueName: SozlukConstans.UserEmailChangedQueueName, obj: @event);
 
                 dbUser.EmailConfirmed = false; // email değiştiği için yeni email confirm edilmemiş demek. use onaylaması gerek

@@ -7,7 +7,7 @@ namespace BlazorSozluk.Common.Infrastructure
 {
     public static class QueueFactory
     {
-        public static void SendMessage(string exchangeName, 
+        public static void SendMessageToExchange(string exchangeName, 
                                         string exchangeType, 
                                         string queueName, 
                                         object obj)

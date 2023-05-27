@@ -23,17 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Commands\EntryCommand\Create" />
-    <Folder Include="Features\Commands\EntryCommand\CreateFav" />
-    <Folder Include="Features\Commands\EntryCommand\CreateVote" />
-    <Folder Include="Features\Commands\EntryCommand\DeleteFav" />
-    <Folder Include="Features\Commands\EntryCommand\DeleteVote" />
-    <Folder Include="Features\Commands\Entry\Create" />
-    <Folder Include="Features\Commands\Entry\CreateFav" />
-    <Folder Include="Features\Commands\Entry\CreateVote" />
-    <Folder Include="Features\Commands\Entry\DeleteFav" />
-    <Folder Include="Features\Commands\Entry\DeleteVote" />
-    <Folder Include="Features\Commands\User\ConfirmEmail" />
     <Folder Include="Features\Queries\" />
   </ItemGroup>
 

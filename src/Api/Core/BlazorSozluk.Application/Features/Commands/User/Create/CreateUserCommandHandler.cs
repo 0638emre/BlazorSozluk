@@ -40,7 +40,7 @@ namespace BlazorSozluk.Application.Features.Commands.User.Create
                     NewEmailAddress = request.EmailAddress
                 };
 
-                QueueFactory.SendMessage(exchangeName: SozlukConstans.UserExchangeName,
+                QueueFactory.SendMessageToExchange(exchangeName: SozlukConstans.UserExchangeName,
                     exchangeType: SozlukConstans.DefaultExchangeType,
                     queueName: SozlukConstans.UserEmailChangedQueueName, obj: @event);
             }
