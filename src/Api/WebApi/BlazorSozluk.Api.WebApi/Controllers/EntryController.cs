@@ -1,4 +1,6 @@
 ﻿using BlazorSozluk.Application.Features.Commands.EntryCommand.Create;
+using BlazorSozluk.Application.Features.Queries.Entry.GetEntries;
+using BlazorSozluk.Application.Features.Queries.Entry.GetMainPageEntries;
 using BlazorSozluk.Common.Models.RequestModels;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -14,6 +16,31 @@ public class EntryController : BaseController
     public EntryController(IMediator mediator)
     {
         _mediator = mediator;
+    }
+    
+    /// <summary>
+    /// Bütün entryleri getirir rastgele olarak
+    /// </summary>
+    /// <param name="query"></param>
+    /// <returns></returns>
+    [HttpGet]
+    public async Task<IActionResult> GetEntries([FromQuery] GetEntriesQuery query)
+    {
+        var result = await _mediator.Send(query);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// ana sayfadaki gösterilecek tüm entryleri getirir.
+    /// </summary>
+    /// <param name="query"></param>
+    /// <returns></returns>
+    [HttpGet]
+    [Route("MainPageEntries")]
+    public async Task<IActionResult> GetMainPageEntries(int page, int pageSize)
+    {
+        var result = await _mediator.Send(new GetMainPageEntriesQuery(UserId, page, pageSize));
+        return Ok(result);
     }
 
     /// <summary>

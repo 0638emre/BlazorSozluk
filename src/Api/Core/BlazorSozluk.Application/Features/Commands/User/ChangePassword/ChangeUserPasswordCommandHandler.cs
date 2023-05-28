@@ -32,7 +32,7 @@ public class ChangeUserPasswordCommandHandler : IRequestHandler<ChangeUserPasswo
         if (user.Password != oldPassword)
             throw new DatabaseValidationException("User old password wrong!");
 
-        user.Password = request.NewPassword;
+        user.Password = PasswordEncryptor.Encrypt(request.NewPassword) ?? throw new DatabaseValidationException("Password encrypt error");
         await _userRepository.UpdateAsync(user);
         await _userRepository.SaveChangesAsync(); // ??TODO: Buna bi bak gerek var mı ?
 
