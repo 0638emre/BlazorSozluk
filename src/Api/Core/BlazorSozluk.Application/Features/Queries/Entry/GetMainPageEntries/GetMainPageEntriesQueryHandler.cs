@@ -1,7 +1,5 @@
-﻿using AutoMapper;
-using BlazorSozluk.Application.Interfaces.Repositories;
+﻿using BlazorSozluk.Application.Interfaces.Repositories;
 using BlazorSozluk.Common.Infrastructure.Extensions;
-using BlazorSozluk.Common.Models;
 using BlazorSozluk.Common.Models.Page;
 using BlazorSozluk.Common.Models.Queries;
 using MediatR;
@@ -20,11 +18,13 @@ public class GetMainPageEntriesQueryHandler : IRequestHandler<GetMainPageEntries
     public async Task<PageViewModel<GetEntryDetailViewModel>> Handle(GetMainPageEntriesQuery request, CancellationToken cancellationToken)
     {
         var query = _entryRepository.AsQueryable();
-
+        
         query = query.Include(i => i.EntryFavorites)
             .Include(i => i.CreatedBy)
             .Include(i => i.EntryVotes);
+        
 
+        
         var list = query.Select(i => new GetEntryDetailViewModel()
         {
             Id = i.Id,
