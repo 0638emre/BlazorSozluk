@@ -5,6 +5,7 @@ using RabbitMQ.Client.Events;
 
 namespace BlazorSozluk.Common.Infrastructure
 {
+    //rabbit mq kullanımı için gerekli extencion ları yazıyoruz.
     public static class QueueFactory
     {
         public static void SendMessageToExchange(string exchangeName, 
