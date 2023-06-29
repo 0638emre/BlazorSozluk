@@ -1,4 +1,5 @@
 ﻿using BlazorSozluk.Application.Features.Commands.User.ConfirmEmail;
+using BlazorSozluk.Application.Features.Queries.Entry.GetUserDetail;
 using BlazorSozluk.Common.Events.User;
 using BlazorSozluk.Common.Models.RequestModels;
 using MediatR;
@@ -18,6 +19,31 @@ namespace BlazorSozluk.Api.WebApi.Controllers
             _mediator = mediator;
         }
 
+        /// <summary>
+        /// Kullanıcıyı id ile getiren servisimiz.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(Guid id)
+        {
+            var result = await _mediator.Send(new GetUserDetailQuery(id));
+            return Ok(result);
+        }
+        
+        /// <summary>
+        /// Kullanıcıyı ismi üzerinden getiren servisimiz.
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("UserName/{userName}")]
+        public async Task<IActionResult> GetByUserName(string userName)
+        {
+            var result = await _mediator.Send(new GetUserDetailQuery(Guid.Empty, userName));
+            return Ok(result);
+        }
+        
         /// <summary>
         /// Sözlük uygulamamıza giriş yapan kullanıcıyı doğrulayan api servisimiz.
         /// </summary>
