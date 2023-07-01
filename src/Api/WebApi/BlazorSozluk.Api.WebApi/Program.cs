@@ -1,3 +1,4 @@
+using BlazorSozluk.Api.WebApi.Infrastructure.Extensions;
 using BlazorSozluk.Application.Extensions;
 using BlazorSozluk.Infrastructure.Persistance.Extensions;
 using FluentValidation.AspNetCore;
@@ -9,6 +10,10 @@ builder.Services.AddApplicationRegistration();
 
 builder.Services.AddInfrastructureRegistration(builder.Configuration);
 
+builder.Services.AddCors(options => options.AddPolicy("MyPolicy", builder =>
+{
+    builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+}));
 
 builder.Services.AddControllers()
     .AddJsonOptions(opt =>
@@ -23,7 +28,8 @@ builder.Services.AddControllers()
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
+//bizim extension classımız.
+builder.Services.ConfigureAuth(builder.Configuration);
 
 var app = builder.Build();
 
@@ -37,7 +43,14 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+//hata detaylarımızı görmek için sadece development ortamında da. fakat prod ortamında sadece hatanın kendisini göreceğiz detayları değil.
+//aynı zamanda bunun içinde loglarda kayıt edilebilir(!)
+app.ConfigureExceptionHandling(app.Environment.IsDevelopment());
+
+app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseCors("MyPolicy");
 
 app.MapControllers();
 
